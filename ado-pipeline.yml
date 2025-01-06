@@ -26,4 +26,4 @@ steps:
           Accept = "application/vnd.github.v3+json"
         } -Body $body
     env:
-      GITHUB_TOKEN: $(System.AccessToken)
+      GITHUB_TOKEN: $(GitHubConnection.Token)
