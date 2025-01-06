@@ -1,0 +1,14 @@
+name: Action triggered by Azure DevOps
+
+on:
+  repository_dispatch:
+    types: [azure-devops-trigger]
+
+jobs:
+  your_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo inputs
+        run: |
+          echo "Input 1: ${{ github.event.client_payload.input1 }}"
+          echo "Input 2: ${{ github.event.client_payload.input2 }}"
