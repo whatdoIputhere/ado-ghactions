@@ -21,8 +21,10 @@ steps:
           client_payload = $inputs
         } | ConvertTo-Json
 
+        $token = $(GitHubConnection.Token)
+
         Invoke-RestMethod -Method Post -Uri $apiUrl -Headers @{
-          Authorization = "token $(GitHubConnection.Token)"
+          Authorization = "token $token"
           Accept = "application/vnd.github.v3+json"
         } -Body $body
     env:
