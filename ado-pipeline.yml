@@ -1,0 +1,28 @@
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: |
+      $githubToken = "$(githubToken)"      
+      $workflowType = "azure-devops-trigger"
+      $apiUrl = "https://api.github.com/repos/whatdoIputhere/ado-ghactions/dispatches"
+
+      $inputs = @{
+        input1 = "input1value"
+        input2 = "input2value"
+      }
+
+      $body = @{
+        event_type = $workflowType
+        client_payload = $inputs
+      }
+
+      Invoke-RestMethod -Method Post -Uri $apiUrl -Headers @{
+        Authorization = "token $githubToken"
+        Accept = "application/vnd.github.v3+json"
+      } -Body $body
+  env:
+    githubToken: $(githubToken)
