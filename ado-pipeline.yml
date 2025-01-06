@@ -18,7 +18,7 @@ steps:
       $body = @{
         event_type = $workflowType
         client_payload = $inputs
-      }
+      } | ConvertTo-Json
 
       Invoke-RestMethod -Method Post -Uri $apiUrl -Headers @{
         Authorization = "token $githubToken"
