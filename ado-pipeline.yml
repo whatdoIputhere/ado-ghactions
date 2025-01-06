@@ -13,8 +13,8 @@ steps:
         $apiUrl = "https://api.github.com/repos/whatdoIputhere/ado-ghactions/dispatches"
 
         $inputs = @{
-          input1 = "${env:APPNAME}"
-          input2 = "${env:ENV}"
+          appname = "${env:APPNAME}"
+          env = "${env:ENV}"
         }
 
         $body = @{
