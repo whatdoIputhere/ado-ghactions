@@ -21,7 +21,7 @@ steps:
           client_payload = $inputs
         } | ConvertTo-Json
 
-        $token = $(GitHubConnection.Token)
+        $token = $(System.AccessToken)
 
         Invoke-RestMethod -Method Post -Uri $apiUrl -Headers @{
           Authorization = "token $token"
