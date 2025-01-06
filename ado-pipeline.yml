@@ -8,7 +8,7 @@ steps:
     inputs:
       targetType: "inline"
       script: |
-        $githubToken = "$(githubToken)"      
+        $githubToken = "${{ parameters.GitHubConnection.token }}"      
         $workflowType = "azure-devops-trigger"
         $apiUrl = "https://api.github.com/repos/whatdoIputhere/ado-ghactions/dispatches"
 
@@ -27,4 +27,4 @@ steps:
           Accept = "application/vnd.github.v3+json"
         } -Body $body
     env:
-      githubToken: $(githubToken)
+      githubToken: ${{ parameters.GitHubConnection.token }}
