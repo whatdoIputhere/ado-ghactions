@@ -21,11 +21,11 @@ steps:
           client_payload = $inputs
         } | ConvertTo-Json
 
-        $token = $(System.AccessToken)
+        $token = "$(System.AccessToken)"
 
         Invoke-RestMethod -Method Post -Uri $apiUrl -Headers @{
           Authorization = "token $token"
           Accept = "application/vnd.github.v3+json"
         } -Body $body
     env:
-      AZURE_DEVOPS_EXT_PAT: $(System.AccessToken)
+      githubToken: $(System.AccessToken)
