@@ -5,7 +5,7 @@ on:
     types: [azure-devops-trigger]
 
 jobs:
-  your_job:
+  Ado-Triggered-Job:
     runs-on: ubuntu-latest
     steps:
       - name: Echo inputs

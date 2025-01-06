@@ -11,8 +11,8 @@ steps:
       $apiUrl = "https://api.github.com/repos/whatdoIputhere/ado-ghactions/dispatches"
 
       $inputs = @{
-        input1 = "input1value"
-        input2 = "input2value"
+        input1 = "changed input1value"
+        input2 = "abcdef"
       }
 
       $body = @{
