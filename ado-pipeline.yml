@@ -1,28 +1,30 @@
+trigger: none
+
 pool:
   name: selfhosted-pool
 
 steps:
-- task: PowerShell@2
-  inputs:
-    targetType: 'inline'
-    script: |
-      $githubToken = "$(githubToken)"      
-      $workflowType = "azure-devops-trigger"
-      $apiUrl = "https://api.github.com/repos/whatdoIputhere/ado-ghactions/dispatches"
+  - task: PowerShell@2
+    inputs:
+      targetType: "inline"
+      script: |
+        $githubToken = "$(githubToken)"      
+        $workflowType = "azure-devops-trigger"
+        $apiUrl = "https://api.github.com/repos/whatdoIputhere/ado-ghactions/dispatches"
 
-      $inputs = @{
-        input1 = "changed input1value"
-        input2 = "abcdef"
-      }
+        $inputs = @{
+          input1 = "changed input1value"
+          input2 = "abcdef"
+        }
 
-      $body = @{
-        event_type = $workflowType
-        client_payload = $inputs
-      } | ConvertTo-Json
+        $body = @{
+          event_type = $workflowType
+          client_payload = $inputs
+        } | ConvertTo-Json
 
-      Invoke-RestMethod -Method Post -Uri $apiUrl -Headers @{
-        Authorization = "token $githubToken"
-        Accept = "application/vnd.github.v3+json"
-      } -Body $body
-  env:
-    githubToken: $(githubToken)
+        Invoke-RestMethod -Method Post -Uri $apiUrl -Headers @{
+          Authorization = "token $githubToken"
+          Accept = "application/vnd.github.v3+json"
+        } -Body $body
+    env:
+      githubToken: $(githubToken)
