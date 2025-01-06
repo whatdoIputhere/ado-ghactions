@@ -22,8 +22,8 @@ steps:
         } | ConvertTo-Json
 
         Invoke-RestMethod -Method Post -Uri $apiUrl -Headers @{
-          Authorization = "token $(GithubServiceConnection.Token)"
+          Authorization = "token ${env:GITHUB_TOKEN}"
           Accept = "application/vnd.github.v3+json"
         } -Body $body
     env:
-      githubToken: $(System.AccessToken)
+      GITHUB_TOKEN: $(System.AccessToken)
