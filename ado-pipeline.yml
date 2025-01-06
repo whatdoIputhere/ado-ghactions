@@ -1,5 +1,5 @@
 pool:
-  vmImage: ubuntu-latest
+  name: selfhosted-pool
 
 steps:
 - task: PowerShell@2
