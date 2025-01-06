@@ -10,5 +10,5 @@ jobs:
     steps:
       - name: Echo inputs
         run: |
-          echo "App name: ${{ github.event.inputs.appname }}"
-          echo "Env: ${{ github.event.inputs.env }}"
+          echo "App name: ${{ github.event.client_payload.appname }}"
+          echo "Env: ${{ github.event.client_payload.env }}"
