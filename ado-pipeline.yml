@@ -7,7 +7,8 @@ steps:
   - task: PowerShell@2
     inputs:
       targetType: "inline"
-      script: |        
+      script: |
+        $githubToken = "$(githubToken)"
         $workflowType = "azure-devops-trigger"
         $apiUrl = "https://api.github.com/repos/whatdoIputhere/ado-ghactions/dispatches"
 
@@ -21,11 +22,7 @@ steps:
           client_payload = $inputs
         } | ConvertTo-Json
 
-        $token = "$(System.AccessToken)"
-
         Invoke-RestMethod -Method Post -Uri $apiUrl -Headers @{
-          Authorization = "token $token"
+          Authorization = "token $githubToken"
           Accept = "application/vnd.github.v3+json"
         } -Body $body
-    env:
-      githubToken: $(System.AccessToken)
