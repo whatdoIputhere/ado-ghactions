@@ -19,7 +19,7 @@ steps:
 
         $body = @{
           event_type = $workflowType
-          client_payload = $inputs
+          inputs = $inputs
         } | ConvertTo-Json
 
         Invoke-RestMethod -Method Post -Uri $apiUrl -Headers @{
