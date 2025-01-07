@@ -12,3 +12,4 @@ jobs:
         run: |
           echo "App name: ${{ github.event.client_payload.appname }}"
           echo "Env: ${{ github.event.client_payload.env }}"
+          exit 1
